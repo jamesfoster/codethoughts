@@ -10,7 +10,7 @@ namespace CodeThoughts.Controllers
 {
 
 	[Authorize]
-	public class AccountController : Controller
+	public class AccountController_ : Controller
 	{
 
 		//

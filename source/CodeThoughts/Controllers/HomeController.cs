@@ -15,14 +15,14 @@ namespace CodeThoughts.Controllers
 			return View();
 		}
 
-		public ActionResult About()
+		private ActionResult About()
 		{
 			ViewBag.Message = "Your app description page.";
 
 			return View();
 		}
 
-		public ActionResult Contact()
+		private ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
 
