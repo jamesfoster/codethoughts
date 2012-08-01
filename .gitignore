@@ -6,3 +6,8 @@ packages/
 bin/
 obj/
 _ReSharper.*/
+
+# Publish artifacts
+publish/
+*.Publish.xml
+*.pubxml
