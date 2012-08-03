@@ -762,3 +762,26 @@ tr.pager td {
             text-indent: 0;
         }
 }
+/* todos */
+.todo, .todo ol {
+	list-style: none;
+}
+.todo li > span {
+	vertical-align: middle;
+}
+.todo .tick {
+	font-size: 22px;
+	line-height: 22px;
+}
+.todo .complete > .tick {
+	color: green;
+}
+.todo .incomplete > .tick {
+	color: red;
+}
+.todo .complete .description {
+	text-decoration: line-through;
+}
+.todo .date {
+	
+}

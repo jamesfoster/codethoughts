@@ -13,17 +13,34 @@
         </div>
     </section>
 }
+<h3>To do list:</h3>
+
+@Html.Todo(new List<object>
+	{
+		new {Complete = true, Date = "28/07/2012", Description = "Create new ASP.NET MVC app"},
+		new {Complete = true, Date = "29/07/2012", Description = "Enable 1 click publishing"},
+		new {Complete = true, Date = "30/07/2012", Description = "Setup repository on github.com"},
+		new {Complete = false, Description = "Write a simple blogging engine", Inner = new List<object>
+			{
+				new {Complete = true, Description = "Choose a data access framework"},
+				new {Complete = false, Description = "Write the model"},
+				new {Complete = false, Description = "Scaffold some controllers/views/repositories"},
+				new {Complete = false, Description = "Think about security"},
+			}},
+		new {Complete = false, Description = "Start blogging"}
+	})
+
 <h3>While you're waiting, why not read something:</h3>
-<ol>
+<ul>
     <li><a href="http://weblogs.asp.net/scottgu/">Scott Gu</a></li>
     <li><a href="http://hanselman.com">Scott Hanselman</a></li>
     <li><a href="http://haacked.com/">Phil Haack</a></li>
     <li><a href="http://wekeroad.com/">Rob Conery</a></li>
     <li><a href="http://ayende.com/blog">Ayende</a></li>
     <li><a href="http://bennedal.com/">Ben Nedal</a></li>
-</ol>
+</ul>
 <h3>Or watch something:</h3>
-<ol>
+<ul>
     <li><a href="http://vimeo.com/ndcoslo/videos">NDC 2012</a></li>
     <li><a href="http://www.asp.net/mvc/pluralsight">ASP.NET MVC Training video from Pluralsight</a></li>
-</ol>
+</ul>
