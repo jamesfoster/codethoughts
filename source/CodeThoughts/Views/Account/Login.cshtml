@@ -9,7 +9,7 @@
 	<h2>Use this form to enter your user name and password.</h2>
 </hgroup>
 
-@using (Html.BeginForm(new {ReturnUrl = ViewBag.ReturnUrl}))
+@using (Html.BeginForm(new {ViewBag.ReturnUrl}))
 {
 	@Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
 
