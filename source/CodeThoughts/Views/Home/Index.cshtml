@@ -14,7 +14,6 @@
 	</section>
 }
 <h3>To do list:</h3>
-
 @Html.Todo(new List<object>
 	{
 		new {Complete = true, Date = "28/07/2012", Description = "Create new ASP.NET MVC app"},
@@ -26,8 +25,9 @@
 					{
 						new {Complete = true, Description = "Choose a data access framework"},
 						new {Complete = true, Date = "03/08/2012", Description = "Write the model"},
-						new {Complete = false, Description = "Scaffold some controllers/views/repositories"},
-						new {Complete = false, Description = "Think about security"},
+						new {Complete = true, Date = "03/08/2012", Description = "Scaffold some controllers/views"},
+						new {Complete = false, Description = "Implement security"},
+						new {Complete = false, Description = "Create a site design"},
 					}
 			},
 		new {Complete = false, Description = "Start blogging"}
