@@ -8,11 +8,9 @@ using CodeThoughts.Models;
 
 namespace CodeThoughts.Controllers
 {
-
 	[Authorize]
 	public class AccountController_ : Controller
 	{
-
 		//
 		// GET: /Account/Login
 
@@ -117,7 +115,6 @@ namespace CodeThoughts.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-
 				// ChangePassword will throw an exception rather
 				// than return false in certain failure scenarios.
 				bool changePasswordSucceeded;
@@ -153,13 +150,14 @@ namespace CodeThoughts.Controllers
 			return View();
 		}
 
-		private IEnumerable<string> GetErrorsFromModelState()
+		IEnumerable<string> GetErrorsFromModelState()
 		{
 			return ModelState.SelectMany(x => x.Value.Errors.Select(error => error.ErrorMessage));
 		}
 
 		#region Status Codes
-		private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+
+		static string ErrorCodeToString(MembershipCreateStatus createStatus)
 		{
 			// See http://go.microsoft.com/fwlink/?LinkID=177550 for
 			// a full list of status codes.
@@ -196,6 +194,7 @@ namespace CodeThoughts.Controllers
 					return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 			}
 		}
+
 		#endregion
 	}
 }
