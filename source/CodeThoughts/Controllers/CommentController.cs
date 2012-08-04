@@ -58,61 +58,6 @@
 			return View(comment);
 		}
 
-		//
-		// GET: /Comment/Edit/5
-
-		public ActionResult Edit(int id = 0)
-		{
-			Comment comment = db.Comments.Find(id);
-			if (comment == null)
-			{
-				return HttpNotFound();
-			}
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
-			return View(comment);
-		}
-
-		//
-		// POST: /Comment/Edit/5
-
-		[HttpPost]
-		public ActionResult Edit(Comment comment)
-		{
-			if (ModelState.IsValid)
-			{
-				db.Entry(comment).State = EntityState.Modified;
-				db.SaveChanges();
-				return RedirectToAction("Index");
-			}
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
-			return View(comment);
-		}
-
-		//
-		// GET: /Comment/Delete/5
-
-		public ActionResult Delete(int id = 0)
-		{
-			Comment comment = db.Comments.Find(id);
-			if (comment == null)
-			{
-				return HttpNotFound();
-			}
-			return View(comment);
-		}
-
-		//
-		// POST: /Comment/Delete/5
-
-		[HttpPost, ActionName("Delete")]
-		public ActionResult DeleteConfirmed(int id)
-		{
-			Comment comment = db.Comments.Find(id);
-			db.Comments.Remove(comment);
-			db.SaveChanges();
-			return RedirectToAction("Index");
-		}
-
 		protected override void Dispose(bool disposing)
 		{
 			db.Dispose();
