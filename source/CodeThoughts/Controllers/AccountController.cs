@@ -8,7 +8,7 @@
 	using Models;
 
 	[Authorize]
-	public class AccountController_ : Controller
+	public class AccountController : Controller
 	{
 		//
 		// GET: /Account/Login
@@ -65,7 +65,7 @@
 		// GET: /Account/Register
 
 		[AllowAnonymous]
-		public ActionResult Register()
+		private ActionResult Register()
 		{
 			return View();
 		}
@@ -75,7 +75,7 @@
 
 		[AllowAnonymous]
 		[HttpPost]
-		public ActionResult Register(RegisterModel model)
+		private ActionResult Register(RegisterModel model)
 		{
 			if (ModelState.IsValid)
 			{
