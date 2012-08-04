@@ -6,7 +6,7 @@
 	using System.Web.Mvc;
 	using Models;
 
-	public class PostController : Controller
+	public class PostController : AdminController
 	{
 		readonly BlogContext db = new BlogContext();
 
