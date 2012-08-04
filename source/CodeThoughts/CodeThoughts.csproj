@@ -169,6 +169,7 @@
     <Content Include="Areas\Admin\Views\Comment\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.6.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js">
