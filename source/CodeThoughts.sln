@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeThoughts.Web", "CodeTho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcHelpers", "MvcHelpers\MvcHelpers.csproj", "{ECE5C6D5-D3F4-41C0-BD7E-D4B0B2D158D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeThoughts.Web.Tests", "CodeThoughts.Web.Tests\CodeThoughts.Web.Tests.csproj", "{BA051AD5-02D7-4BFD-9272-3AE1C4507367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{897C46CF-053A-4DED-B572-B0D3FD406342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{897C46CF-053A-4DED-B572-B0D3FD406342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{897C46CF-053A-4DED-B572-B0D3FD406342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA051AD5-02D7-4BFD-9272-3AE1C4507367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA051AD5-02D7-4BFD-9272-3AE1C4507367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA051AD5-02D7-4BFD-9272-3AE1C4507367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA051AD5-02D7-4BFD-9272-3AE1C4507367}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECE5C6D5-D3F4-41C0-BD7E-D4B0B2D158D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECE5C6D5-D3F4-41C0-BD7E-D4B0B2D158D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECE5C6D5-D3F4-41C0-BD7E-D4B0B2D158D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
