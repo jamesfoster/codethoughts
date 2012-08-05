@@ -9,21 +9,11 @@
 
 	public static class HtmlHelperExtensions
 	{
-		public static IHtmlString Ticked(this HtmlHelper helper)
-		{
-			return new HtmlString("&#9745;");
-		}
-
-		public static IHtmlString Unticked(this HtmlHelper helper)
-		{
-			return new HtmlString("&#9744;");
-		}
-
 		public static IHtmlString Todo(this HtmlHelper helper, List<object> todos)
 		{
 			const string itemTemplate = @"
 	<li class=""{0}"">
-		<span class=""tick"">{1}</span>
+		<i class=""{1}""></i>
 		<span class=""description"">{2}</span>
 		<span class=""date"">{3}</span>
 		{4}
@@ -41,7 +31,7 @@
 
 				result += string.Format(itemTemplate,
 				                        todo.Complete ? "complete" : "incomplete",
-				                        todo.Complete ? helper.Ticked() : helper.Unticked(),
+				                        todo.Complete ? "icon-ok" : "icon-remove",
 				                        todo.Description,
 				                        expando.ContainsKey("Date") ? todo.Date : "",
 				                        inner);

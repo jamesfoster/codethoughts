@@ -9,47 +9,39 @@
 		@Scripts.Render("~/bundles/modernizr")
 	</head>
 	<body>
-		<a href="https://github.com/jamesfoster/codethoughts"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-		<header>
-			<div class="content-wrapper">
-				<div class="float-left">
-					<p class="site-title">@Html.ActionLink("codethoughts.co.uk", "Index", "Home")</p>
-				</div>
-				<div class="float-right">
-					@*
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-*@
+		<a class="github-link" href="https://github.com/jamesfoster/codethoughts">
+			<img src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub" />
+		</a>
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="@Url.Action("Index", "Home")">codethoughts.co.uk</a>
 				</div>
 			</div>
-		</header>
-		<div id="body">
-			@RenderSection("featured", required: false)
-			<section class="content-wrapper main-content clear-fix">
-				@RenderBody()
-			</section>
 		</div>
-		<footer>
-			<div class="content-wrapper">
-				<div class="float-left">
+
+		<div class="container">
+			<div class="row">
+				@RenderSection("featured", required: false)
+			</div>
+
+			<div class="row">
+				@RenderBody()
+			</div>
+
+			<div class="row">
+				<div class="pull-left">
 					<p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
 				</div>
-				<div class="float-right">
+				<div class="pull-right">
 					<ul id="social">
 						<li><a href="http://facebook.com" class="facebook">Facebook</a></li>
 						<li><a href="http://twitter.com" class="twitter">Twitter</a></li>
 					</ul>
 				</div>
 			</div>
-		</footer>
+		</div>
 
 		@Scripts.Render("~/bundles/jquery")
 		@RenderSection("scripts", required: false)

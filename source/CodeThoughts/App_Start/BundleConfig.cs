@@ -16,7 +16,9 @@
 				            .Include("~/Scripts/modernizr-*"));
 
 			bundles.Add(new StyleBundle("~/Content/css")
-				            .Include("~/Content/site.css"));
+				            .Include("~/Content/Site.css")
+				            .Include("~/Content/bootstrap.min.css")
+				            .Include("~/Content/bootstrap-responsive.css"));
 		}
 	}
 }
