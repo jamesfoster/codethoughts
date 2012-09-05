@@ -34,6 +34,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -71,12 +74,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BlogControllerTests.cs" />
+    <Compile Include="Controllers\CommentControllerTests.cs" />
+    <Compile Include="Controllers\PostControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeThoughts.Data\CodeThoughts.Data.csproj">
+      <Project>{ADB634ED-DB57-4507-99F4-71BA306A5E7D}</Project>
+      <Name>CodeThoughts.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeThoughts.Web\CodeThoughts.Web.csproj">
       <Project>{897c46cf-053a-4ded-b572-b0d3fd406342}</Project>
       <Name>CodeThoughts.Web</Name>

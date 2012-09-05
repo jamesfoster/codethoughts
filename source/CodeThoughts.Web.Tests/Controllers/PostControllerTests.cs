@@ -1,21 +1,20 @@
-﻿using System.Web.Mvc;
-using CodeThoughts.Controllers;
-using NUnit.Framework;
-
 namespace CodeThoughts.Web.Tests.Controllers
 {
+	using System.Web.Mvc;
+	using CodeThoughts.Controllers;
 	using Data;
 	using Moq;
+	using NUnit.Framework;
 
 	[TestFixture]
-	public class BlogControllerTests
+	public class PostControllerTests
 	{
 		[Test]
 		public void IndexReturnsViewResult()
 		{
-			var blogRepository = new Mock<IBlogRepository>();
+			var postRepository = new Mock<IPostRepository>();
 
-			var controller = new BlogController(blogRepository.Object);
+			var controller = new PostController(postRepository.Object);
 
 			var result = controller.Index();
 
