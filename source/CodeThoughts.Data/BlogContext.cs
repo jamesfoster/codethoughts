@@ -1,6 +1,7 @@
 namespace CodeThoughts.Data
 {
 	using System.Data.Entity;
+	using Model;
 
 	public class BlogContext : DbContext
 	{

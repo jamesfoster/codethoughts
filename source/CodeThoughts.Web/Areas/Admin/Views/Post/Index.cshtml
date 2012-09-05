@@ -1,5 +1,4 @@
-﻿@using CodeThoughts.Models
-@model IEnumerable<CodeThoughts.Models.Post>
+﻿@model IEnumerable<CodeThoughts.Model.Post>
 
 @{
 	ViewBag.Title = "Index";
@@ -27,7 +26,7 @@
 		<th></th>
 	</tr>
 
-	@foreach (Post item in Model)
+	@foreach (dynamic item in Model)
 	{
 		<tr>
 			<td>

@@ -1,4 +1,4 @@
-namespace CodeThoughts.Models
+namespace CodeThoughts.Model
 {
 	using System;
 	using System.Collections.Generic;

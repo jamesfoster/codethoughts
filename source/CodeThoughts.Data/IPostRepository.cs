@@ -1,6 +1,7 @@
 namespace CodeThoughts.Data
 {
 	using System.Collections.Generic;
+	using Model;
 
 	public interface IPostRepository
 	{

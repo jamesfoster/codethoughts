@@ -1,7 +1,8 @@
 ﻿namespace CodeThoughts.Controllers
 {
 	using System.Web.Mvc;
-	using Models;
+	using Data;
+	using Model;
 
 	public class BlogController : Controller
 	{

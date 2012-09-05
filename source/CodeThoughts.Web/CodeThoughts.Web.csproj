@@ -155,21 +155,11 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="Data\BlogContext.cs" />
-    <Compile Include="Data\EfBlogRepository.cs" />
-    <Compile Include="Data\EfCommentRepository.cs" />
-    <Compile Include="Data\EfPostRepository.cs" />
-    <Compile Include="Data\IBlogRepository.cs" />
-    <Compile Include="Data\ICommentRepository.cs" />
-    <Compile Include="Data\IPostRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
-    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -289,6 +279,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeThoughts.Data\CodeThoughts.Data.csproj">
+      <Project>{ADB634ED-DB57-4507-99F4-71BA306A5E7D}</Project>
+      <Name>CodeThoughts.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeThoughts.Model\CodeThoughts.Model.csproj">
+      <Project>{33D461F7-B43A-40FA-A1BF-F6D1AF5FE158}</Project>
+      <Name>CodeThoughts.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvcHelpers\MvcHelpers.csproj">
       <Project>{ECE5C6D5-D3F4-41C0-BD7E-D4B0B2D158D2}</Project>
       <Name>MvcHelpers</Name>

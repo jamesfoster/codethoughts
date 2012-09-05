@@ -3,7 +3,8 @@ namespace CodeThoughts.Data
 	using System.Data;
 	using System.Data.Entity;
 	using System.Collections.Generic;
-	using Models;
+	using System.Linq;
+	using Model;
 
 	public class EfCommentRepository : ICommentRepository
 	{

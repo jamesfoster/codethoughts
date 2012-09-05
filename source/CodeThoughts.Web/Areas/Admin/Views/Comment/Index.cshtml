@@ -1,5 +1,4 @@
-﻿@using CodeThoughts.Models
-@model IEnumerable<CodeThoughts.Models.Comment>
+﻿@model IEnumerable<CodeThoughts.Model.Comment>
 
 @{
 	ViewBag.Title = "Index";
@@ -24,7 +23,7 @@
 		<th></th>
 	</tr>
 
-	@foreach (Comment item in Model)
+	@foreach (dynamic item in Model)
 	{
 		<tr>
 			<td>
