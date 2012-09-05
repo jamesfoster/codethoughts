@@ -1,22 +1,25 @@
 ﻿namespace CodeThoughts.Areas.Admin.Controllers
 {
-	using System.Data;
-	using System.Data.Entity;
-	using System.Linq;
 	using System.Web.Mvc;
 	using Models;
 
 	public class PostController : AdminController
 	{
-		readonly BlogContext db = new BlogContext();
+		public IPostRepository Posts { get; set; }
+		public IBlogRepository Blogs { get; set; }
+
+		public PostController(IPostRepository postRepository, IBlogRepository blogRepository)
+		{
+			Posts = postRepository;
+			Blogs = blogRepository;
+		}
 
 		//
 		// GET: /Admin/Post/
 
 		public ActionResult Index()
 		{
-			IQueryable<Post> posts = db.Posts.Include(p => p.Blog);
-			return View(posts.ToList());
+			return View(Posts.All());
 		}
 
 		//
@@ -24,7 +27,7 @@
 
 		public ActionResult Details(int id = 0)
 		{
-			Post post = db.Posts.Find(id);
+			Post post = Posts.Find(id);
 			if (post == null)
 			{
 				return HttpNotFound();
@@ -37,7 +40,7 @@
 
 		public ActionResult Create()
 		{
-			ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name");
+			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name");
 			return View();
 		}
 
@@ -49,12 +52,11 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Posts.Add(post);
-				db.SaveChanges();
+				Posts.Add(post);
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name", post.BlogId);
+			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
 			return View(post);
 		}
 
@@ -63,12 +65,12 @@
 
 		public ActionResult Edit(int id = 0)
 		{
-			Post post = db.Posts.Find(id);
+			Post post = Posts.Find(id);
 			if (post == null)
 			{
 				return HttpNotFound();
 			}
-			ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name", post.BlogId);
+			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
 			return View(post);
 		}
 
@@ -80,11 +82,10 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Entry(post).State = EntityState.Modified;
-				db.SaveChanges();
+				Posts.Update(post);
 				return RedirectToAction("Index");
 			}
-			ViewBag.BlogId = new SelectList(db.Blogs, "Id", "Name", post.BlogId);
+			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
 			return View(post);
 		}
 
@@ -93,7 +94,7 @@
 
 		public ActionResult Delete(int id = 0)
 		{
-			Post post = db.Posts.Find(id);
+			Post post = Posts.Find(id);
 			if (post == null)
 			{
 				return HttpNotFound();
@@ -107,16 +108,9 @@
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Post post = db.Posts.Find(id);
-			db.Posts.Remove(post);
-			db.SaveChanges();
+			Post post = Posts.Find(id);
+			Posts.Delete(post);
 			return RedirectToAction("Index");
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }

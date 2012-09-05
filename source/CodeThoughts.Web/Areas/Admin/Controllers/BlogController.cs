@@ -1,20 +1,23 @@
 ﻿namespace CodeThoughts.Areas.Admin.Controllers
 {
-	using System.Data;
-	using System.Linq;
 	using System.Web.Mvc;
 	using Models;
 
 	public class BlogController : AdminController
 	{
-		readonly BlogContext db = new BlogContext();
+		public IBlogRepository Blogs { get; set; }
+
+		public BlogController(IBlogRepository blogRepository)
+		{
+			Blogs = blogRepository;
+		}
 
 		//
 		// GET: /Admin/Blog/
 
 		public ActionResult Index()
 		{
-			return View(db.Blogs.ToList());
+			return View(Blogs.All());
 		}
 
 		//
@@ -22,7 +25,7 @@
 
 		public ActionResult Details(int id = 0)
 		{
-			Blog blog = db.Blogs.Find(id);
+			Blog blog = Blogs.Find(id);
 			if (blog == null)
 			{
 				return HttpNotFound();
@@ -46,8 +49,7 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Blogs.Add(blog);
-				db.SaveChanges();
+				Blogs.Add(blog);
 				return RedirectToAction("Index");
 			}
 
@@ -59,7 +61,7 @@
 
 		public ActionResult Edit(int id = 0)
 		{
-			Blog blog = db.Blogs.Find(id);
+			Blog blog = Blogs.Find(id);
 			if (blog == null)
 			{
 				return HttpNotFound();
@@ -75,8 +77,7 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Entry(blog).State = EntityState.Modified;
-				db.SaveChanges();
+				Blogs.Update(blog);
 				return RedirectToAction("Index");
 			}
 			return View(blog);
@@ -87,7 +88,7 @@
 
 		public ActionResult Delete(int id = 0)
 		{
-			Blog blog = db.Blogs.Find(id);
+			Blog blog = Blogs.Find(id);
 			if (blog == null)
 			{
 				return HttpNotFound();
@@ -101,16 +102,9 @@
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Blog blog = db.Blogs.Find(id);
-			db.Blogs.Remove(blog);
-			db.SaveChanges();
+			Blog blog = Blogs.Find(id);
+			Blogs.Delete(blog);
 			return RedirectToAction("Index");
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }

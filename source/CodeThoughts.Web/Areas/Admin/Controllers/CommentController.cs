@@ -1,22 +1,25 @@
 ﻿namespace CodeThoughts.Areas.Admin.Controllers
 {
-	using System.Data;
-	using System.Data.Entity;
-	using System.Linq;
 	using System.Web.Mvc;
 	using Models;
 
 	public class CommentController : AdminController
 	{
-		readonly BlogContext db = new BlogContext();
+		public ICommentRepository Comments { get; set; }
+		public IPostRepository Posts { get; set; }
+
+		public CommentController(ICommentRepository commentRepository, IPostRepository postRepository)
+		{
+			Comments = commentRepository;
+			Posts = postRepository;
+		}
 
 		//
 		// GET: /Admin/Comment/
 
 		public ActionResult Index()
 		{
-			IQueryable<Comment> comments = db.Comments.Include(c => c.Post);
-			return View(comments.ToList());
+			return View(Comments.All());
 		}
 
 		//
@@ -24,7 +27,7 @@
 
 		public ActionResult Details(int id = 0)
 		{
-			Comment comment = db.Comments.Find(id);
+			Comment comment = Comments.Find(id);
 			if (comment == null)
 			{
 				return HttpNotFound();
@@ -37,7 +40,7 @@
 
 		public ActionResult Create()
 		{
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title");
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title");
 			return View();
 		}
 
@@ -49,12 +52,11 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Comments.Add(comment);
-				db.SaveChanges();
+				Comments.Add(comment);
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
 			return View(comment);
 		}
 
@@ -63,12 +65,12 @@
 
 		public ActionResult Edit(int id = 0)
 		{
-			Comment comment = db.Comments.Find(id);
+			Comment comment = Comments.Find(id);
 			if (comment == null)
 			{
 				return HttpNotFound();
 			}
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
 			return View(comment);
 		}
 
@@ -80,11 +82,10 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Entry(comment).State = EntityState.Modified;
-				db.SaveChanges();
+				Comments.Update(comment);
 				return RedirectToAction("Index");
 			}
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
 			return View(comment);
 		}
 
@@ -93,7 +94,7 @@
 
 		public ActionResult Delete(int id = 0)
 		{
-			Comment comment = db.Comments.Find(id);
+			Comment comment = Comments.Find(id);
 			if (comment == null)
 			{
 				return HttpNotFound();
@@ -107,16 +108,9 @@
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Comment comment = db.Comments.Find(id);
-			db.Comments.Remove(comment);
-			db.SaveChanges();
+			Comment comment = Comments.Find(id);
+			Comments.Delete(comment);
 			return RedirectToAction("Index");
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }

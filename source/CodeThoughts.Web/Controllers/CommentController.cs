@@ -1,22 +1,25 @@
 ﻿namespace CodeThoughts.Controllers
 {
-	using System.Data;
-	using System.Data.Entity;
-	using System.Linq;
 	using System.Web.Mvc;
 	using Models;
 
 	public class CommentController : Controller
 	{
-		readonly BlogContext db = new BlogContext();
+		public ICommentRepository Comments { get; set; }
+		public IPostRepository Posts { get; set; }
+
+		public CommentController(ICommentRepository commentRepository, IPostRepository postRepository)
+		{
+			Comments = commentRepository;
+			Posts = postRepository;
+		}
 
 		//
 		// GET: /Comment/
 
 		public ActionResult Index()
 		{
-			IQueryable<Comment> comments = db.Comments.Include(c => c.Post);
-			return View(comments.ToList());
+			return View(Comments.All());
 		}
 
 		//
@@ -24,7 +27,7 @@
 
 		public ActionResult Details(int id = 0)
 		{
-			Comment comment = db.Comments.Find(id);
+			Comment comment = Comments.Find(id);
 			if (comment == null)
 			{
 				return HttpNotFound();
@@ -37,7 +40,7 @@
 
 		public ActionResult Create()
 		{
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title");
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title");
 			return View();
 		}
 
@@ -49,19 +52,12 @@
 		{
 			if (ModelState.IsValid)
 			{
-				db.Comments.Add(comment);
-				db.SaveChanges();
+				Comments.Add(comment);
 				return RedirectToAction("Index");
 			}
 
-			ViewBag.PostId = new SelectList(db.Posts, "Id", "Title", comment.PostId);
+			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
 			return View(comment);
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			db.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }
