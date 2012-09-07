@@ -2,7 +2,6 @@ namespace CodeThoughts.Data
 {
 	using System.Data;
 	using System.Data.Entity;
-	using System.Collections.Generic;
 	using System.Linq;
 	using Model;
 
@@ -15,9 +14,9 @@ namespace CodeThoughts.Data
 			Context = context;
 		}
 
-		public IList<Post> All()
+		public IQueryable<Post> All()
 		{
-			return Context.Posts.Include(p => p.Blog).ToList();
+			return Context.Posts.Include(p => p.Blog);
 		}
 
 		public Post Find(int id)

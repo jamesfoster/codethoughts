@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CodeThoughts.Model.Post>
 @section featured {
 	<header>
 		<div class="page-header">
@@ -10,6 +10,24 @@
 		</div>
 	</header>
 }
+
+<ol id="blog-container" class="unstyled">
+	@foreach (var post in Model)
+	{
+		<li class="post">
+			<h4 class="title">
+				@post.Title
+			</h4>
+			<div class="details">
+				Posted on @post.DateCreated.ToString("MMMM dd yyyy")
+			</div>
+			<p class="content">
+				@post.Content
+			</p>
+		</li>
+	}
+</ol>
+
 <h3>To do list:</h3>
 @Html.Todo(new List<object>
 	{
