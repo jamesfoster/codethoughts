@@ -15,14 +15,14 @@
 	@foreach (var post in Model)
 	{
 		<li class="post">
-			<h4 class="title">
-				@post.Title
+			<h4>
+				<a href="@Url.Action("Details", "Post", new { id = post.Id })">@post.Title</a>
 			</h4>
-			<div class="details">
+			<small class="muted">
 				Posted on @post.DateCreated.ToString("MMMM dd yyyy")
-			</div>
+			</small>
 			<p class="content">
-				@post.Content
+				@Html.Raw(post.ContentHTML)
 			</p>
 		</li>
 	}

@@ -42,3 +42,20 @@ a.twitter { background: url("../Images/twitter.png") no-repeat; }
 .todo .complete .description { text-decoration: line-through; }
 
 .todo .date { }
+
+/* posts */
+.post {
+	padding: 15px 0;
+}
+.post + .post {
+	border-top: 1px solid blue;
+}
+
+.post .content {
+	margin-top: 15px;
+}
+
+.post-editor {
+	font-family: Consolas, 'Courier New', 'Simplified Arabic Fixed';
+	width: 100%;
+}
