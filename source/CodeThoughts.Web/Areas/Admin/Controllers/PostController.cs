@@ -3,6 +3,7 @@
 	using System.Web.Mvc;
 	using Data;
 	using Model;
+	using System.Linq;
 
 	public class PostController : AdminController
 	{
@@ -20,7 +21,8 @@
 
 		public ActionResult Index()
 		{
-			return View(Posts.All());
+			var posts = Posts.All().OrderByDescending(p => p.DateCreated).ToList();
+			return View(posts);
 		}
 
 		//
@@ -41,7 +43,10 @@
 
 		public ActionResult Create()
 		{
-			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name");
+			var blogs = Blogs.All();
+			var selected = blogs.Select(b => b.Id).FirstOrDefault();
+
+			ViewBag.BlogId = new SelectList(blogs, "Id", "Name", selected);
 			return View();
 		}
 
@@ -49,6 +54,7 @@
 		// POST: /Admin/Post/Create
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Create(Post post)
 		{
 			if (ModelState.IsValid)
@@ -71,7 +77,7 @@
 			{
 				return HttpNotFound();
 			}
-			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
+			ViewBag.Blog = Blogs.Find(post.BlogId).Name;
 			return View(post);
 		}
 
@@ -79,6 +85,7 @@
 		// POST: /Admin/Post/Edit/5
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Edit(Post post)
 		{
 			if (ModelState.IsValid)
