@@ -60,6 +60,15 @@
     <Compile Include="IBlogRepository.cs" />
     <Compile Include="ICommentRepository.cs" />
     <Compile Include="IPostRepository.cs" />
+    <Compile Include="Migrations\201208032257158_InitialCreate.cs" />
+    <Compile Include="Migrations\201208032257158_InitialCreate.Designer.cs">
+      <DependentUpon>201208032257158_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201209071504410_Add ContentHTML.cs" />
+    <Compile Include="Migrations\201209071504410_Add ContentHTML.Designer.cs">
+      <DependentUpon>201209071504410_Add ContentHTML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
