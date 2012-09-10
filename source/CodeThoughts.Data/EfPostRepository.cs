@@ -1,5 +1,6 @@
 namespace CodeThoughts.Data
 {
+	using System;
 	using System.Data;
 	using System.Data.Entity;
 	using System.Linq;
@@ -26,13 +27,21 @@ namespace CodeThoughts.Data
 
 		public void Add(Post post)
 		{
+			post.DateCreated = DateTime.Now;
+
 			Context.Posts.Add(post);
 			Context.SaveChanges(); // todo move this line out of here.
 		}
 
-		public void Update(Post post)
+		public void Update(Post p)
 		{
-			Context.Entry(post).State = EntityState.Modified;
+			var post = new Post {Id = p.Id};
+
+			Context.Posts.Attach(post);
+
+			post.Title = p.Title;
+			post.Content = p.Content;
+
 			Context.SaveChanges(); // todo move this line out of here.
 		}
 
