@@ -12,3 +12,5 @@ App_Data/
 publish/
 *.Publish.xml
 *.pubxml
+
+_NCrunch*/
