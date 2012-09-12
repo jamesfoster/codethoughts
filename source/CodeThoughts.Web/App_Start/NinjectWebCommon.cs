@@ -7,6 +7,7 @@ namespace CodeThoughts
 {
 	using System;
 	using System.Web;
+	using Controllers;
 	using Data;
 	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 	using Ninject;
@@ -60,8 +61,12 @@ namespace CodeThoughts
 		static void RegisterServices(IKernel kernel)
 		{
 			kernel.Bind<IBlogRepository>().To<EfBlogRepository>();
-			kernel.Bind<IPostRepository>().To<EfPostRepository>();
 			kernel.Bind<ICommentRepository>().To<EfCommentRepository>();
+			kernel.Bind<IPostRepository>().To<EfPostRepository>();
+			kernel.Bind<IPostRepository>().To<PublishedPostRepository>()
+				.WhenInjectedInto<HomeController>();
+			kernel.Bind<IPostRepository>().To<PublishedPostRepository>()
+				.WhenInjectedInto<PostController>();
 
 			kernel.Bind<BlogContext>().ToMethod(ctx => new BlogContext());
 		}

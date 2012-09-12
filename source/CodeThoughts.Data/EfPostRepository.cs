@@ -37,11 +37,10 @@ namespace CodeThoughts.Data
 
 		public void Update(Post p)
 		{
-			var post = new Post {Id = p.Id};
-
-			Context.Posts.Attach(post);
+			var post = Find(p.Id);
 
 			post.Title = p.Title;
+			post.Published = p.Published;
 			post.Content = p.Content;
 			post.ContentHTML = TransformHTML(post.Content);
 

@@ -31,10 +31,18 @@
 		</div>
 
 		<div class="editor-label">
+			@Html.LabelFor(model => model.Published, "Published")
+		</div>
+		<div class="editor-field">
+			@Html.CheckBoxFor(model=>model.Published)
+			@Html.ValidationMessageFor(model => model.Published)
+		</div>
+
+		<div class="editor-label">
 			@Html.LabelFor(model => model.Content)
 		</div>
 		<div class="editor-field">
-			@Html.TextAreaFor(model => model.Content, 10, 10, new { @class = "post-editor" })
+			@Html.TextAreaFor(model => model.Content, 25, 10, new { @class = "post-editor" })
 			@Html.ValidationMessageFor(model => model.Content)
 		</div>
 

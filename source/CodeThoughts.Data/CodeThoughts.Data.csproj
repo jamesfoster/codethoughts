@@ -71,8 +71,13 @@
     <Compile Include="Migrations\201209071504410_Add ContentHTML.Designer.cs">
       <DependentUpon>201209071504410_Add ContentHTML.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201209121853200_Add Published flag.cs" />
+    <Compile Include="Migrations\201209121853200_Add Published flag.Designer.cs">
+      <DependentUpon>201209121853200_Add Published flag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishedPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
