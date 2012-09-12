@@ -40,7 +40,12 @@ namespace CodeThoughts
 		/// <returns>The created kernel.</returns>
 		static IKernel CreateKernel()
 		{
-			var kernel = new StandardKernel();
+			var kernel = new StandardKernel(new NinjectSettings
+				{
+					LoadExtensions = false
+				});
+			kernel.Load(new Ninject.Web.Mvc.MvcModule());
+
 			kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
 			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
