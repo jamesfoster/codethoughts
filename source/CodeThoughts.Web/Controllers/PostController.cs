@@ -14,14 +14,6 @@
 		}
 
 		//
-		// GET: /Post/
-
-		public ActionResult Index()
-		{
-			return View(Posts.All());
-		}
-
-		//
 		// GET: /Post/Details/5
 
 		public ActionResult Details(int id = 0)
