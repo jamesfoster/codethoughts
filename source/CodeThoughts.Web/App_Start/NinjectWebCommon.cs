@@ -7,11 +7,13 @@ namespace CodeThoughts
 {
 	using System;
 	using System.Web;
+	using System.Web.Security;
 	using Controllers;
 	using Data;
 	using Infrastructure;
 	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 	using Ninject;
+	using Ninject.Activation;
 	using Ninject.Web.Common;
 
 	public static class NinjectWebCommon
@@ -64,13 +66,24 @@ namespace CodeThoughts
 		{
 			kernel.Bind<IBlogRepository>().To<EfBlogRepository>();
 			kernel.Bind<ICommentRepository>().To<EfCommentRepository>();
+
 			kernel.Bind<IPostRepository>().To<EfPostRepository>();
-			kernel.Bind<IPostRepository>().To<PublishedPostRepository>()
-				.WhenInjectedInto<HomeController>();
-			kernel.Bind<IPostRepository>().To<PublishedPostRepository>()
-				.WhenInjectedInto<PostController>();
+			kernel.Bind<IPostRepository>().To<PublishedPostRepository>().When(OnlyShowPublishedPosts);
 
 			kernel.Bind<BlogContext>().ToMethod(ctx => new BlogContext());
+		}
+
+		static bool OnlyShowPublishedPosts(IRequest request)
+		{
+			return request.ParentRequest.Service != typeof (IPostRepository) &&
+			       !CanViewUnpublishedPosts();
+		}
+
+		static bool CanViewUnpublishedPosts()
+		{
+			var user = HttpContext.Current.User.Identity;
+
+			return user.IsAuthenticated && Roles.IsUserInRole(user.Name, "admin");
 		}
 	}
 }

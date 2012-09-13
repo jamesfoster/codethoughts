@@ -1,5 +1,4 @@
-﻿@using CodeThoughts.Model
-@model IEnumerable<CodeThoughts.Model.Post>
+﻿@model IEnumerable<CodeThoughts.Model.Post>
 
 @{
 	ViewBag.Title = "Index";
@@ -16,11 +15,21 @@
 	{
 		<li class="post">
 			<h4>
+				@if(!post.Published)
+				{
+					<span class="label label-warning">Unpublished</span>
+				}
+
 				<a href="@Url.Action("Edit", "Post", new { id = post.Id })">@post.Title</a>
 			</h4>
-			<small class="muted">
-				Posted on @post.DateCreated.ToString("MMMM dd yyyy")
-			</small>
+
+			@if(post.Published)
+			{
+				<small class="muted">
+					Posted on @post.DateCreated.ToString("MMMM dd yyyy")
+				</small>
+			}
+
 			<p class="content">
 				@Html.Raw(post.ContentHTML)
 			</p>
