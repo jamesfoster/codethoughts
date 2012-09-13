@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeThoughts.Model", "CodeT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeThoughts.Data", "CodeThoughts.Data\CodeThoughts.Data.csproj", "{ADB634ED-DB57-4507-99F4-71BA306A5E7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeThoughts.Infrastructure", "CodeThoughts.Infrastructure\CodeThoughts.Infrastructure.csproj", "{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{ADB634ED-DB57-4507-99F4-71BA306A5E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADB634ED-DB57-4507-99F4-71BA306A5E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADB634ED-DB57-4507-99F4-71BA306A5E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,7 @@ namespace CodeThoughts
 	using System.Web;
 	using Controllers;
 	using Data;
+	using Infrastructure;
 	using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 	using Ninject;
 	using Ninject.Web.Common;
@@ -46,6 +47,7 @@ namespace CodeThoughts
 					LoadExtensions = false
 				});
 			kernel.Load(new Ninject.Web.Mvc.MvcModule());
+			kernel.Load(new InfrastructureModule());
 
 			kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
 			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();

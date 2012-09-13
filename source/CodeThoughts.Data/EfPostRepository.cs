@@ -1,19 +1,20 @@
 namespace CodeThoughts.Data
 {
 	using System;
-	using System.Data;
 	using System.Data.Entity;
 	using System.Linq;
-	using MarkdownSharp;
+	using Infrastructure.Formatters;
 	using Model;
 
 	public class EfPostRepository : IPostRepository
 	{
 		public BlogContext Context { get; set; }
+		public MarkdownService Markdown { get; set; }
 
-		public EfPostRepository(BlogContext context)
+		public EfPostRepository(BlogContext context, MarkdownService markdown)
 		{
 			Context = context;
+			Markdown = markdown;
 		}
 
 		public IQueryable<Post> All()
@@ -29,7 +30,7 @@ namespace CodeThoughts.Data
 		public void Add(Post post)
 		{
 			post.DateCreated = DateTime.Now;
-			post.ContentHTML = TransformHTML(post.Content);
+			post.ContentHTML = Markdown.ToHtml(post.Content);
 
 			Context.Posts.Add(post);
 			Context.SaveChanges(); // todo move this line out of here.
@@ -42,7 +43,7 @@ namespace CodeThoughts.Data
 			post.Title = p.Title;
 			post.Published = p.Published;
 			post.Content = p.Content;
-			post.ContentHTML = TransformHTML(post.Content);
+			post.ContentHTML = Markdown.ToHtml(post.Content);
 
 			Context.SaveChanges(); // todo move this line out of here.
 		}
@@ -51,16 +52,6 @@ namespace CodeThoughts.Data
 		{
 			Context.Posts.Remove(post);
 			Context.SaveChanges(); // todo move this line out of here.
-		}
-
-		static string TransformHTML(string content)
-		{
-			var markdown = new Markdown(new MarkdownOptions
-				{
-					AutoHyperlink = true
-				});
-
-			return markdown.Transform(content);
 		}
 	}
 }

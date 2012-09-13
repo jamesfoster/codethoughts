@@ -279,6 +279,10 @@
       <Project>{ADB634ED-DB57-4507-99F4-71BA306A5E7D}</Project>
       <Name>CodeThoughts.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeThoughts.Infrastructure\CodeThoughts.Infrastructure.csproj">
+      <Project>{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}</Project>
+      <Name>CodeThoughts.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeThoughts.Model\CodeThoughts.Model.csproj">
       <Project>{33D461F7-B43A-40FA-A1BF-F6D1AF5FE158}</Project>
       <Name>CodeThoughts.Model</Name>
