@@ -40,6 +40,9 @@ namespace CodeThoughts.Data
 		{
 			var post = Find(p.Id);
 
+			if (!post.Published && p.Published)
+				post.DateCreated = DateTime.Now;
+
 			post.Title = p.Title;
 			post.Published = p.Published;
 			post.Content = p.Content;
