@@ -69,7 +69,7 @@ namespace CodeThoughts
 			kernel.Bind<IPostRepository>().To<EfPostRepository>();
 			kernel.Bind<IPostRepository>().To<PublishedPostRepository>().When(OnlyShowPublishedPosts);
 
-			kernel.Bind<BlogContext>().ToMethod(ctx => new BlogContext());
+			kernel.Bind<IBlogContext>().ToMethod(ctx => new BlogContext());
 		}
 
 		static bool OnlyShowPublishedPosts(IRequest request)
