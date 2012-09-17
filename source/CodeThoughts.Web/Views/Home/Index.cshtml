@@ -21,7 +21,7 @@
 					<span class="label label-warning">Unpublished</span>
 				}
 				
-				<a href="@Url.Action("Details", "Post", new { id = post.Id })">@post.Title</a>
+				<a href="@Url.Action("Details", "Post", new { id = post.Url })">@post.Title</a>
 			</h4>
 
 			@if(post.Published)

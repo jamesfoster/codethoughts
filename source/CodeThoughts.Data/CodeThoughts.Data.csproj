@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201209121853200_Add Published flag.Designer.cs">
       <DependentUpon>201209121853200_Add Published flag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201209171120383_Added Url column.cs" />
+    <Compile Include="Migrations\201209171120383_Added Url column.Designer.cs">
+      <DependentUpon>201209171120383_Added Url column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishedPostRepository.cs" />

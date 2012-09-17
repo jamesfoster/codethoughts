@@ -16,13 +16,12 @@
 		//
 		// GET: /Post/Details/5
 
-		public ActionResult Details(int id = 0)
+		public ActionResult Details(string id)
 		{
-			Post post = Posts.Find(id);
+			var post = Posts.FindByUrl(id);
 			if (post == null)
-			{
 				return HttpNotFound();
-			}
+
 			return View(post);
 		}
 	}

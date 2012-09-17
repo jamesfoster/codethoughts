@@ -8,6 +8,7 @@ namespace CodeThoughts.Data
 	{
 		IQueryable<Post> All();
 		Post Find(int id);
+		Post FindByUrl(string url);
 		void Add(Post post);
 		void Update(Post post);
 		void Delete(Post post);

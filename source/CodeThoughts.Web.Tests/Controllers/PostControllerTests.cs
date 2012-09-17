@@ -15,13 +15,13 @@ namespace CodeThoughts.Web.Tests.Controllers
 		{
 			var postRepository = new Mock<IPostRepository>();
 
-			var postId = 1;
+			const string postUrl = "the-post";
 
-			postRepository.Setup(r => r.Find(postId)).Returns(new Post { Id = postId });
+			postRepository.Setup(r => r.FindByUrl(postUrl)).Returns(new Post { Url = postUrl });
 
 			var controller = new PostController(postRepository.Object);
 
-			var result = controller.Details(postId);
+			var result = controller.Details(postUrl);
 
 			Assert.That(result, Is.AssignableFrom<ViewResult>());
 		}
@@ -33,7 +33,7 @@ namespace CodeThoughts.Web.Tests.Controllers
 
 			var controller = new PostController(postRepository.Object);
 
-			var result = controller.Details(1);
+			var result = controller.Details("the-post");
 
 			Assert.That(result, Is.AssignableFrom<HttpNotFoundResult>());
 		}

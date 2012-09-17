@@ -1,5 +1,6 @@
 namespace CodeThoughts.Data
 {
+	using System;
 	using System.Linq;
 	using Model;
 
@@ -19,9 +20,22 @@ namespace CodeThoughts.Data
 
 		public Post Find(int id)
 		{
-			var post = Inner.Find(id);
+			return FindInternal(() => Inner.Find(id));
+		}
 
-			return post.Published ? post : null;
+		public Post FindByUrl(string url)
+		{
+			return FindInternal(() => Inner.FindByUrl(url));
+		}
+
+		Post FindInternal(Func<Post> getter)
+		{
+			var post = getter();
+
+			if (post == null || !post.Published)
+				return null;
+
+			return post;
 		}
 
 		public void Add(Post post)
