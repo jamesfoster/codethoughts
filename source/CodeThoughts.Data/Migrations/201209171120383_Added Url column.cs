@@ -10,6 +10,9 @@ namespace CodeThoughts.Data.Migrations
 			AddColumn("dbo.Posts", "Url", c => c.String(maxLength: 200, nullable: false));
 			AlterColumn("dbo.Posts", "Title", c => c.String(maxLength: 200, nullable: false));
 
+			// make Urls unique so we can create a unique contraint.
+			Sql("update [dbo].[Posts] set [Url] = [Id]");
+
 			CreateIndex("dbo.Posts", "Url", unique: true, name: "dbo.Posts_Url");
 		}
 
