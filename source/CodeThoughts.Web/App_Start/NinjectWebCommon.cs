@@ -7,6 +7,7 @@ namespace CodeThoughts
 {
 	using System;
 	using System.Web;
+	using System.Web.Mvc;
 	using System.Web.Security;
 	using Data;
 	using Infrastructure;
@@ -45,10 +46,13 @@ namespace CodeThoughts
 		{
 			var kernel = new StandardKernel(new NinjectSettings
 				{
+					UseReflectionBasedInjection = true,
 					LoadExtensions = false
 				});
 			kernel.Load(new Ninject.Web.Mvc.MvcModule());
 			kernel.Load(new InfrastructureModule());
+
+			kernel.Unbind<ModelValidatorProvider>(); // hack: work around MethodAccessException
 
 			kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
 			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
