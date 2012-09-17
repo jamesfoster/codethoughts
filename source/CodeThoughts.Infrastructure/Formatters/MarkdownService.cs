@@ -2,7 +2,7 @@ namespace CodeThoughts.Infrastructure.Formatters
 {
 	using MarkdownSharp;
 
-	public class MarkdownService
+	public class MarkdownService : IMarkdownService
 	{
 		protected static Tranformers Tranformers { get; set; }
 		protected Markdown Markdown { get; set; }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ADB634ED-DB57-4507-99F4-71BA306A5E7D}</ProjectGuid>
+    <ProjectGuid>{138B872D-F11E-4649-81C8-38D37BE66A7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeThoughts.Data</RootNamespace>
-    <AssemblyName>CodeThoughts.Data</AssemblyName>
+    <RootNamespace>CodeThoughts.Data.Tests</RootNamespace>
+    <AssemblyName>CodeThoughts.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -45,48 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogContext.cs" />
-    <Compile Include="EfBlogRepository.cs">
-      <SubType>
-      </SubType>
-    </Compile>
-    <Compile Include="EfCommentRepository.cs">
-      <SubType>
-      </SubType>
-    </Compile>
-    <Compile Include="EfPostRepository.cs">
-      <SubType>
-      </SubType>
-    </Compile>
-    <Compile Include="IBlogContext.cs" />
-    <Compile Include="IBlogRepository.cs" />
-    <Compile Include="ICommentRepository.cs" />
-    <Compile Include="IPostRepository.cs" />
-    <Compile Include="Migrations\201208032257158_InitialCreate.cs" />
-    <Compile Include="Migrations\201208032257158_InitialCreate.Designer.cs">
-      <DependentUpon>201208032257158_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201209071504410_Add ContentHTML.cs" />
-    <Compile Include="Migrations\201209071504410_Add ContentHTML.Designer.cs">
-      <DependentUpon>201209071504410_Add ContentHTML.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201209121853200_Add Published flag.cs" />
-    <Compile Include="Migrations\201209121853200_Add Published flag.Designer.cs">
-      <DependentUpon>201209121853200_Add Published flag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201209171120383_Added Url column.cs" />
-    <Compile Include="Migrations\201209171120383_Added Url column.Designer.cs">
-      <DependentUpon>201209171120383_Added Url column.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="EfPostRepositoryTests.cs" />
+    <Compile Include="PublishedPostRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublishedPostRepository.cs" />
+    <Compile Include="InMemoryDbSet.cs" />
+    <Compile Include="StubPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeThoughts.Data\CodeThoughts.Data.csproj">
+      <Project>{ADB634ED-DB57-4507-99F4-71BA306A5E7D}</Project>
+      <Name>CodeThoughts.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeThoughts.Infrastructure\CodeThoughts.Infrastructure.csproj">
       <Project>{AD3A7161-4FC3-496D-8C2C-EB5307E7F0C7}</Project>
       <Name>CodeThoughts.Infrastructure</Name>

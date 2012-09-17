@@ -14,7 +14,7 @@ namespace CodeThoughts.Infrastructure
 			Kernel.Bind<IFormatter>().To<HtmlFormatter>();
 			Kernel.Bind<IStyleSheet>().To<DefaultStyleSheet>();
 			Kernel.Bind<Tranformers>().ToSelf();
-			Kernel.Bind<MarkdownService>().ToSelf().InSingletonScope();
+			Kernel.Bind<IMarkdownService>().To<MarkdownService>().InSingletonScope();
 		}
 	}
 }

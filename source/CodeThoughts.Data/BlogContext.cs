@@ -3,14 +3,14 @@ namespace CodeThoughts.Data
 	using System.Data.Entity;
 	using Model;
 
-	public class BlogContext : DbContext
+	public class BlogContext : DbContext, IBlogContext
 	{
 		public BlogContext() : base("name=DefaultConnection")
 		{
 		}
 
-		public DbSet<Blog> Blogs { get; set; }
-		public DbSet<Post> Posts { get; set; }
-		public DbSet<Comment> Comments { get; set; }
+		public IDbSet<Blog> Blogs { get; set; }
+		public IDbSet<Post> Posts { get; set; }
+		public IDbSet<Comment> Comments { get; set; }
 	}
 }

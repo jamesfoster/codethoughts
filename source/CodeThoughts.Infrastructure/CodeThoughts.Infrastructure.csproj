@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formatters\IMarkdownService.cs" />
     <Compile Include="Formatters\MarkdownService.cs" />
     <Compile Include="Formatters\Tranformers.cs" />
     <Compile Include="InfrastructureModule.cs" />

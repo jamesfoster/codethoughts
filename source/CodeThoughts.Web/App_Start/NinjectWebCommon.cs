@@ -8,7 +8,6 @@ namespace CodeThoughts
 	using System;
 	using System.Web;
 	using System.Web.Security;
-	using Controllers;
 	using Data;
 	using Infrastructure;
 	using Microsoft.Web.Infrastructure.DynamicModuleHelper;

@@ -9,10 +9,10 @@ namespace CodeThoughts.Data
 
 	public class EfPostRepository : IPostRepository
 	{
-		public BlogContext Context { get; set; }
-		public MarkdownService Markdown { get; set; }
+		public IBlogContext Context { get; set; }
+		public IMarkdownService Markdown { get; set; }
 
-		public EfPostRepository(BlogContext context, MarkdownService markdown)
+		public EfPostRepository(IBlogContext context, IMarkdownService markdown)
 		{
 			Context = context;
 			Markdown = markdown;
