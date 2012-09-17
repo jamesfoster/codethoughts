@@ -21,7 +21,7 @@ namespace CodeThoughts.Web.Tests.Controllers
 
 			var controller = new PostController(postRepository.Object);
 
-			var result = controller.Details(postUrl);
+			var result = controller.Show(postUrl);
 
 			Assert.That(result, Is.AssignableFrom<ViewResult>());
 		}
@@ -33,7 +33,7 @@ namespace CodeThoughts.Web.Tests.Controllers
 
 			var controller = new PostController(postRepository.Object);
 
-			var result = controller.Details("the-post");
+			var result = controller.Show("the-post");
 
 			Assert.That(result, Is.AssignableFrom<HttpNotFoundResult>());
 		}

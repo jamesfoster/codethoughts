@@ -17,7 +17,7 @@
 		}
 
 		//
-		// GET: /Admin/Post/
+		// GET: /admin/blog/
 
 		public ActionResult Index()
 		{
@@ -26,22 +26,22 @@
 		}
 
 		//
-		// GET: /Admin/Post/Details/5
+		// GET: /admin/blog/hello-world
 
-		public ActionResult Details(int id = 0)
+		public ActionResult Show(string id)
 		{
-			Post post = Posts.Find(id);
+			var post = Posts.FindByUrl(id);
+
 			if (post == null)
-			{
 				return HttpNotFound();
-			}
+
 			return View(post);
 		}
 
 		//
-		// GET: /Admin/Post/Create
+		// GET: /admin/blog/New
 
-		public ActionResult Create()
+		public ActionResult New()
 		{
 			var blogs = Blogs.All();
 			var selected = blogs.Select(b => b.Id).FirstOrDefault();
@@ -51,7 +51,7 @@
 		}
 
 		//
-		// POST: /Admin/Post/Create
+		// POST: /admin/blog/Create
 
 		[HttpPost]
 		[ValidateInput(false)]
@@ -64,60 +64,65 @@
 			}
 
 			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
-			return View(post);
+			return View("New", post);
 		}
 
 		//
-		// GET: /Admin/Post/Edit/5
+		// GET: /admin/blog/hello-world/edit
 
-		public ActionResult Edit(int id = 0)
+		public ActionResult Edit(string id)
 		{
-			Post post = Posts.Find(id);
+			var post = Posts.FindByUrl(id);
+
 			if (post == null)
-			{
 				return HttpNotFound();
-			}
+
 			ViewBag.Blog = Blogs.Find(post.BlogId).Name;
 			return View(post);
 		}
 
 		//
-		// POST: /Admin/Post/Edit/5
+		// PUT: /admin/blog/hello-world
 
-		[HttpPost]
+		[HttpPut]
 		[ValidateInput(false)]
-		public ActionResult Edit(Post post)
+		public ActionResult Update(Post post)
 		{
 			if (ModelState.IsValid)
 			{
 				Posts.Update(post);
 				return RedirectToAction("Index");
 			}
-			ViewBag.BlogId = new SelectList(Blogs.All(), "Id", "Name", post.BlogId);
-			return View(post);
+
+			var p = Posts.Find(post.Id);
+			ViewBag.Blog = Blogs.Find(p.BlogId).Name;
+
+			return View("Edit", post);
 		}
 
 		//
-		// GET: /Admin/Post/Delete/5
+		// GET: /admin/blog/hello-world/delete
 
-		public ActionResult Delete(int id = 0)
+		public ActionResult Delete(string id)
 		{
-			Post post = Posts.Find(id);
+			var post = Posts.FindByUrl(id);
+			
 			if (post == null)
-			{
 				return HttpNotFound();
-			}
+
 			return View(post);
 		}
 
 		//
-		// POST: /Admin/Post/Delete/5
+		// DELETE: /admin/blog/hello-world
 
-		[HttpPost, ActionName("Delete")]
-		public ActionResult DeleteConfirmed(int id)
+		[HttpDelete]
+		public ActionResult Destroy(string id)
 		{
-			Post post = Posts.Find(id);
+			var post = Posts.FindByUrl(id);
+
 			Posts.Delete(post);
+
 			return RedirectToAction("Index");
 		}
 	}

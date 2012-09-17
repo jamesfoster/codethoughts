@@ -6,14 +6,15 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Update", "Post"))
 {
 	@Html.ValidationSummary(true)
+	@Html.HttpMethodOverride(HttpVerbs.Put)
 
 	<fieldset>
 		<legend>Post</legend>
 
-		@Html.HiddenFor(model => model.Id)
+		<input type="hidden" name="Id" value="@Model.Id" />
 
 		<div class="editor-label">
 			@Html.LabelFor(model => model.Title)

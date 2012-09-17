@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net40-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="RestfulRouting">
+      <HintPath>..\packages\RestfulRouting.1.3.0\lib\RestfulRouting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -151,6 +154,7 @@
     <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,18 +178,18 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\New.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Post\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Post\New.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Post\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Comment\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Comment\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Comment\New.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Comment\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
@@ -259,7 +263,7 @@
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Blog\Delete.cshtml" />
-    <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Post\Show.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Comment\Details.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />

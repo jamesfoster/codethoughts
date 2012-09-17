@@ -14,11 +14,12 @@
 		}
 
 		//
-		// GET: /Post/Details/5
+		// GET: /blog/hello-world
 
-		public ActionResult Details(string id)
+		public ActionResult Show(string id)
 		{
 			var post = Posts.FindByUrl(id);
+
 			if (post == null)
 				return HttpNotFound();
 

@@ -16,7 +16,7 @@
 		}
 
 		//
-		// GET: /Admin/Comment/
+		// GET: /admin/blog/hello-world/comments/
 
 		public ActionResult Index()
 		{
@@ -24,93 +24,99 @@
 		}
 
 		//
-		// GET: /Admin/Comment/Details/5
+		// GET: /admin/blog/hello-world/comments/5
 
-		public ActionResult Details(int id = 0)
+		public ActionResult Show(int id = 0)
 		{
-			Comment comment = Comments.Find(id);
+			var comment = Comments.Find(id);
+
 			if (comment == null)
-			{
 				return HttpNotFound();
-			}
+
 			return View(comment);
 		}
 
 		//
-		// GET: /Admin/Comment/Create
+		// GET: /admin/blog/hello-world/comments/New
 
-		public ActionResult Create()
+		public ActionResult New(string postId)
 		{
 			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title");
 			return View();
 		}
 
 		//
-		// POST: /Admin/Comment/Create
+		// POST: /admin/blog/hello-world/comments/
 
 		[HttpPost]
-		public ActionResult Create(Comment comment)
+		public ActionResult Create(string postId, Comment comment)
 		{
 			if (ModelState.IsValid)
 			{
+				var post = Posts.FindByUrl(postId);
+				comment.Post = post;
+
 				Comments.Add(comment);
 				return RedirectToAction("Index");
 			}
 
 			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
-			return View(comment);
+			return View("New", comment);
 		}
 
 		//
-		// GET: /Admin/Comment/Edit/5
+		// GET: /admin/blog/hello-world/comments/5/Edit
 
-		public ActionResult Edit(int id = 0)
+		public ActionResult Edit(string postId, int id = 0)
 		{
-			Comment comment = Comments.Find(id);
+			var comment = Comments.Find(id);
+
 			if (comment == null)
-			{
 				return HttpNotFound();
-			}
+
 			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
 			return View(comment);
 		}
 
 		//
-		// POST: /Admin/Comment/Edit/5
+		// PUT: /admin/blog/hello-world/comments/5
 
-		[HttpPost]
-		public ActionResult Edit(Comment comment)
+		[HttpPut]
+		public ActionResult Update(string postId, Comment comment)
 		{
 			if (ModelState.IsValid)
 			{
 				Comments.Update(comment);
 				return RedirectToAction("Index");
 			}
+
 			ViewBag.PostId = new SelectList(Posts.All(), "Id", "Title", comment.PostId);
-			return View(comment);
+			return View("Edit", comment);
 		}
 
 		//
-		// GET: /Admin/Comment/Delete/5
+		// GET: /admin/blog/hello-world/comments/5/delete
 
-		public ActionResult Delete(int id = 0)
+		public ActionResult Delete(string postId, int id = 0)
 		{
-			Comment comment = Comments.Find(id);
+			var comment = Comments.Find(id);
+
 			if (comment == null)
-			{
 				return HttpNotFound();
-			}
+
 			return View(comment);
 		}
 
 		//
-		// POST: /Admin/Comment/Delete/5
+		// DELETE: /admin/blog/hello-world/comments/5
 
-		[HttpPost, ActionName("Delete")]
-		public ActionResult DeleteConfirmed(int id)
+		[HttpDelete]
+		public ActionResult Destroy(string postId, int id)
 		{
-			Comment comment = Comments.Find(id);
+			var comment = Comments.Find(id);
+
 			Comments.Delete(comment);
+
 			return RedirectToAction("Index");
 		}
 	}
